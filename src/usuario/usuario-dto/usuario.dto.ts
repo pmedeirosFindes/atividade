@@ -1,7 +1,16 @@
-export type usuarioDTO = {
+import { IsNumber, IsString } from "class-validator";
+
+export class usuarioDTO  {
   // id?: number;
-  nome: string;
-  login: string;
-  senha:string;
-  id_perfil: number;
+  @IsString()
+   nome: string;
+
+  @IsString()
+   login: string;
+
+  @IsString()
+   senha:string;
+
+  @IsNumber()
+   id_perfil: number;
 }

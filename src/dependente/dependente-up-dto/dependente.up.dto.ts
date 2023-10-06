@@ -1,6 +1,4 @@
-export type dependenteUpDTO = {
-  // id?:number;
-  nome?:string;
-  idade?:number;
-  id_funcionario?:number;
-}
+import { PartialType } from "@nestjs/mapped-types";
+import { dependenteDTO } from "../dependente-dto/dependente.dto";
+
+export class dependenteUpDTO extends PartialType(dependenteDTO){}

@@ -1,6 +1,4 @@
-export type funcionarioUpDTO = {
-  // id?: number;
-  nome?: string;
-  cargo?: string;
-  cpf?:string;
-}
+import { PartialType } from "@nestjs/mapped-types";
+import { funcionarioDTO } from "../funcionario-dto/funcionario.dto";
+
+export class funcionarioUpDTO extends PartialType(funcionarioDTO) {}

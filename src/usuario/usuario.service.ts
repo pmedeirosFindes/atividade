@@ -13,9 +13,9 @@ export class UsuarioService {
 
   async create(data:usuarioDTO){
 
-    const e = await bcrypt.genSalt();
+    const crypt = await bcrypt.genSalt();
 
-    data.senha = await bcrypt.hash(data.senha,e); 
+    data.senha = await bcrypt.hash(data.senha,crypt); 
 
     const loginExist = await this.prisma.usuario.findFirst({where:{login:data.login}});
 
@@ -66,7 +66,13 @@ export class UsuarioService {
     if(!userExist){
       throw new Error('Usuario não existe');
     }
+    if(data.login){
+        const loginExist = await this.prisma.usuario.findFirst({where:{login:data.login}});
 
+        if(loginExist){ 
+        throw new Error('Login já exitente');
+        }
+    }
     return await this.prisma.usuario.update({data,where:{id}})
   };
 
