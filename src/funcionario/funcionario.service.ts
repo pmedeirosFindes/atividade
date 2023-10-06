@@ -8,7 +8,7 @@ export class FuncionarioService {
   constructor(private prisma: PrismaService){}
 
   async create(data:funcionarioDTO){
-
+    //função cpf
     const cpfExist = await this.prisma.funcionario.findFirst({where:{cpf:data.cpf}});
 
     if(cpfExist){
@@ -33,7 +33,9 @@ export class FuncionarioService {
       throw new Error('Funcionario não existe');
     }
 
-    return userExist  
+    const dependentes = await this.prisma.dependente.findMany({where:{id_funcionario:id}})
+    
+    return dependentes.map((e) => e.nome )
   };
 
   async update(id:number,data:funcionarioUpDTO){
@@ -53,12 +55,13 @@ export class FuncionarioService {
       throw new Error('Funcionario não existe');
     }
 
+    const dependentes = await this.prisma.dependente.findFirst({where:{id_funcionario:id}})
+
+    if(dependentes){
+      throw new Error('Não é possivel excluir, depententes cadastrados');
+    }
+
     return await this.prisma.funcionario.delete({where:{id}});
   };
-
-  async cpf(data:funcionarioDTO){
-
-  };
-
 
 }

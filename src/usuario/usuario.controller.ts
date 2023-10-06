@@ -25,18 +25,33 @@ export class UsuarioController {
   };
 
   @Get(':id')
-  findOne( @Param ('id') id:string) {
-    return this.usuarioService.findOne(parseInt(id));
+  async findOne( @Param ('id') id:string) {
+    const parametro = parseInt(id);
+    if(!parametro){
+      throw new Error('Id invalido!!');
+    }else{
+      return this.usuarioService.findOne(parametro);
+    };
   };
  
   @Put(':id')
   async update(@Param('id') id:string, @Body() data:updateDTO){
-    return this.usuarioService.update(parseInt(id),data);
+    const parametro = parseInt(id);
+    if(!parametro){
+      throw new Error('Id invalido!!');
+    }else{
+      return this.usuarioService.update(parametro,data);
+    };
   };
 
   @Delete(':id')
-  remove(@Param('id') id:string){
-    return this.usuarioService.remove(parseInt(id));
+  async remove(@Param('id') id:string){
+    const parametro = parseInt(id);
+    if(!parametro){
+      throw new Error('Id invalido!!');
+    }else{
+      return this.usuarioService.remove(parametro);
+    };
   };
 
 }

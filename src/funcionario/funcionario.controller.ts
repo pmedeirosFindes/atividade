@@ -18,17 +18,32 @@ export class FuncionarioController {
   };
 
   @Get(':id')
-  findOne( @Param ('id') id:string) {
-    return this.funcionarioService.findOne(parseInt(id));
+  async findOne( @Param ('id') id:string) {
+    const parametro = parseInt(id);
+    if(!parametro){
+      throw new Error('Id invalido!!');
+    }else{
+      return this.funcionarioService.findOne(parametro);
+    };
   };
 
   @Put(':id')
   async update(@Param('id') id:string, @Body() data:funcionarioUpDTO){
-    return this.funcionarioService.update(parseInt(id),data);
+    const parametro = parseInt(id);
+    if(!parametro){
+      throw new Error('Id invalido!!');
+    }else{
+      return this.funcionarioService.update(parametro,data);
+    };
   };
 
   @Delete(':id')
-  remove(@Param('id') id:string){
-    return this.funcionarioService.remove(parseInt(id));
+  async remove(@Param('id') id:string){
+    const parametro = parseInt(id);
+    if(!parametro){
+      throw new Error('Id invalido!!');
+    }else{
+      return this.funcionarioService.remove(parametro);
+    };
   };
 }

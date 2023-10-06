@@ -18,17 +18,32 @@ export class DependenteController {
   };
 
   @Get(':id')
-  findOne( @Param ('id') id:string) {
-    return this.dependenteService.findOne(parseInt(id));
+  async findOne( @Param ('id') id:string) {
+    const parametro = parseInt(id);
+    if(!parametro){
+      throw new Error('Id invalido!!');
+    }else{
+      return this.dependenteService.findOne(parametro);
+    };
   };
 
   @Put(':id')
   async update(@Param('id') id:string, @Body() data:dependenteUpDTO){
-    return this.dependenteService.update(parseInt(id),data);
+    const parametro = parseInt(id);
+    if(!parametro){
+      throw new Error('Id invalido!!');
+    }else{
+      return this.dependenteService.update(parametro,data);
+    };
   };
 
   @Delete(':id')
-  remove(@Param('id') id:string){
-    return this.dependenteService.remove(parseInt(id));
+  async remove(@Param('id') id:string){
+    const parametro = parseInt(id);
+    if(!parametro){
+      throw new Error('Id invalido!!');
+    }else{
+      return this.dependenteService.remove(parametro);
+    };
   };
 }
