@@ -1,4 +1,4 @@
 export type perfilDTO = {
-  id?: number;
+  // id?: number;
   tipo: string;
 };

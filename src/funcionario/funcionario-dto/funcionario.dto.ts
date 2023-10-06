@@ -1,5 +1,5 @@
 export type funcionarioDTO = {
-  id?: number;
+  // id?: number;
   nome: string;
   cargo?: string;
   cpf:string;

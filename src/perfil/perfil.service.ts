@@ -12,7 +12,7 @@ export class PerfilService {
       const perfilExist = await this.prisma.perfil.findFirst({where:{tipo:data.tipo}});
 
       if(perfilExist){
-       throw new Error('Tipo já exitente');
+        throw new Error('Tipo já exitente');
        
       }
 

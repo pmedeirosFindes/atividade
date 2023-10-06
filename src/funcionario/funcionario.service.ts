@@ -56,5 +56,9 @@ export class FuncionarioService {
     return await this.prisma.funcionario.delete({where:{id}});
   };
 
+  async cpf(data:funcionarioDTO){
+
+  };
+
 
 }
